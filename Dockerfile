@@ -61,6 +61,10 @@ RUN echo "su developer -c 'echo \$AUTHORIZED_HOST > /home/developer/.ssh/authori
 RUN echo "/usr/sbin/sshd -D" >> /src/run.sh
 RUN chmod +x /src/run.sh
 
+# Setup git
+RUN su developer -c 'git config --global user.name "Tanner Engbretson"'
+RUN su developer -c 'git config --global user.email "tanner@redoxengine.com"'
+
 # Setup ssh access
 RUN apt install -y openssh-server vim
 RUN mkdir /var/run/sshd
