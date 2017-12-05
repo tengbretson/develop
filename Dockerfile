@@ -54,6 +54,7 @@ RUN useradd -ms $(which fish) developer
 RUN echo "developer:$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 13)" | chpasswd
 RUN echo "developer ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/developer
 RUN su developer -c '/src/oh-my-fish/bin/install --offline --noninteractive --yes'
+RUN su developer -c 'omf i bobthefish'
 RUN echo "#!/bin/sh" > /src/run.sh
 RUN echo "su developer -c 'mkdir /home/developer/.ssh'" >> /src/run.sh
 RUN echo "su developer -c 'echo \$AUTHORIZED_HOST > /home/developer/.ssh/authorized_keys'" >> /src/run.sh
